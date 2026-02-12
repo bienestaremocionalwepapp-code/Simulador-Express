@@ -12,7 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,89 +23,274 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             max-width: 500px;
             width: 100%;
-            padding: 40px;
+            padding: 25px;
         }
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { color: #667eea; font-size: 2em; margin-bottom: 5px; }
-        .header p { color: #666; font-size: 0.95em; }
+        .header { 
+            text-align: center; 
+            margin-bottom: 15px;
+        }
+        .header h1 { color: #667eea; font-size: 1.8em; margin-bottom: 3px; }
+        .header p { color: #666; font-size: 0.9em; }
         .total-prestar {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 35px 20px;
+            padding: 20px 15px;
             border-radius: 15px;
             color: white;
         }
-        .total-prestar-label { font-size: 1em; opacity: 0.95; margin-bottom: 10px; font-weight: 500; }
-        .total-prestar-value { font-size: 3.5em; font-weight: bold; }
+        .total-prestar-label { font-size: 0.9em; opacity: 0.95; margin-bottom: 5px; font-weight: 500; }
+        .total-prestar-value { font-size: 2.8em; font-weight: bold; }
         .resultados {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 15px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
         .resultado-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
         }
         .resultado-item:last-child { border-bottom: none; }
-        .resultado-label { font-size: 1em; color: #666; font-weight: 500; }
-        .resultado-value { font-size: 1.3em; color: #667eea; font-weight: bold; }
-        .selectores { margin-bottom: 30px; }
-        .selector-group {
-            margin-bottom: 20px;
+        .resultado-label { font-size: 0.95em; color: #666; font-weight: 500; }
+        .resultado-value { 
+            font-size: 1.2em; 
+            color: #667eea; 
+            font-weight: bold;
+            transition: all 0.4s ease;
         }
-        .selector-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #667eea;
+
+        /* Animación de cambio - parpadeo con colores */
+        @keyframes colorPulse {
+            0% { 
+                background: transparent;
+                transform: scale(1);
+            }
+            25% { 
+                background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+                transform: scale(1.05);
+                color: white;
+                border-radius: 8px;
+                padding: 5px 10px;
+            }
+            50% { 
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+                transform: scale(1.08);
+                color: white;
+            }
+            75% { 
+                background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+                transform: scale(1.05);
+                color: white;
+            }
+            100% { 
+                background: transparent;
+                transform: scale(1);
+                color: #667eea;
+            }
         }
-        .selector-group select {
+
+        .highlight-change {
+            animation: colorPulse 0.8s ease-in-out;
+        }
+
+        /* Efecto especial para el selector cuando cambia */
+        .selector-group select, .selector-group input {
             width: 100%;
-            padding: 14px;
-            font-size: 1.1em;
+            padding: 12px;
+            font-size: 1em;
             border: 2px solid #667eea;
             border-radius: 12px;
             background: #f0f4ff;
             color: #333;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .selector-group select:focus {
+
+        .selector-group input {
+            cursor: text;
+        }
+        
+        .selector-group select:focus, .selector-group input:focus {
             outline: none;
             border-color: #764ba2;
             box-shadow: 0 0 10px rgba(102,126,234,0.3);
         }
+
+        .selector-active {
+            animation: selectorGlow 0.6s ease;
+        }
+
+        @keyframes selectorGlow {
+            0% { 
+                border-color: #667eea;
+                box-shadow: 0 0 0px rgba(102,126,234,0.3);
+            }
+            50% { 
+                border-color: #FF6B6B;
+                box-shadow: 0 0 25px rgba(255,107,107,0.6);
+                transform: scale(1.02);
+            }
+            100% { 
+                border-color: #667eea;
+                box-shadow: 0 0 10px rgba(102,126,234,0.3);
+                transform: scale(1);
+            }
+        }
+
+        .selectores { margin-bottom: 20px; }
+        .selector-group {
+            margin-bottom: 12px;
+        }
+        .selector-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Opciones de capital */
+        .capital-options {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .capital-btn {
+            flex: 1;
+            padding: 8px;
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .capital-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .capital-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Input personalizado de capital */
+        .capital-input-wrapper {
+            position: relative;
+        }
+        .capital-input-wrapper input {
+            padding-left: 30px;
+        }
+        .capital-currency {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-weight: bold;
+            pointer-events: none;
+        }
+        .capital-error {
+            color: #FF6B6B;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none;
+        }
+        .capital-error.show {
+            display: block;
+        }
+
+        /* Sección de datos del cliente */
+        .cliente-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #667eea;
+        }
+        .cliente-section h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .cliente-input-group {
+            margin-bottom: 10px;
+        }
+        .cliente-input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #555;
+        }
+        .cliente-input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.95em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .cliente-input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102,126,234,0.2);
+        }
+        .cliente-input-group input.error {
+            border-color: #FF6B6B;
+        }
+        .input-error-msg {
+            color: #FF6B6B;
+            font-size: 0.8em;
+            margin-top: 3px;
+            display: none;
+        }
+        .input-error-msg.show {
+            display: block;
+        }
+        
         .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
+            width: 100%;
             background: #25D366;
-            border-radius: 50%;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
-            cursor: pointer;
+            gap: 10px;
+            margin-bottom: 15px;
             transition: all 0.3s ease;
-            z-index: 999;
-            text-decoration: none;
-            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
-        .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
-        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+        .whatsapp-btn:hover { 
+            background: #128C7E; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        .whatsapp-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .whatsapp-icon { width: 24px; height: 24px; fill: white; }
         .loading { text-align: center; padding: 40px; color: #667eea; font-size: 1.1em; }
 
-        /* QR Section */
+        /* QR centrado */
         .qr-section {
-            margin-top: 40px;
-            padding: 25px;
+            margin-top: 20px;
+            padding: 20px;
             background: #f8f9fa;
             border-radius: 15px;
             text-align: center;
@@ -113,43 +298,70 @@
         }
         .qr-section h3 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
         #qrcode {
-            margin: 20px auto;
+            margin: 15px auto;
             padding: 10px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .qr-text {
-            font-size: 1.1em;
+            font-size: 0.95em;
             color: #555;
-            margin: 10px 0;
+            margin: 8px 0;
         }
-        .share-link-btn {
-            background: #25D366;
+        .share-btn {
+            background: #667eea;
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1.1em;
+            padding: 10px 25px;
+            font-size: 1em;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: all 0.3s;
         }
-        .share-link-btn:hover { background: #128C7E; transform: translateY(-2px); }
+        .share-btn:hover { background: #764ba2; transform: translateY(-2px); }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5); }
-            50% { box-shadow: 0 5px 30px rgba(37, 211, 102, 0.8); }
-            100% { box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5); }
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
         }
+        .toast.show {
+            display: block;
+        }
+        .toast.error {
+            background: #FF6B6B;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 600px) {
-            .container { padding: 25px; }
-            .total-prestar-value { font-size: 2.5em; }
-            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .container { padding: 20px; }
+            .total-prestar-value { font-size: 2.3em; }
+            body { padding: 10px; }
         }
     </style>
 </head>
@@ -172,92 +384,288 @@
                     <span class="resultado-label">Pago Diario</span>
                     <span class="resultado-value" id="pagoDiario">$0.00</span>
                 </div>
-                <div class="resultado-item">
+                <div class="resultado-item" id="totalDiasItem">
                     <span class="resultado-label">Total Días</span>
                     <span class="resultado-value" id="totalDias">0</span>
                 </div>
-                <div class="resultado-item">
+                <div class="resultado-item" id="totalInteresItem">
+                    <span class="resultado-label">Interés Aplicado</span>
+                    <span class="resultado-value" id="interesAplicado">0%</span>
+                </div>
+                <div class="resultado-item" id="totalInteresItem">
                     <span class="resultado-label">Total Interés</span>
                     <span class="resultado-value" id="totalInteres">$0.00</span>
                 </div>
             </div>
             <div class="selectores">
                 <div class="selector-group">
-                    <label for="interes">Interés</label>
-                    <select id="interes" onchange="selectInteres(this.value)">
+                    <label for="dias">Plazo</label>
+                    <select id="dias">
                         <option value="0">Cargando...</option>
                     </select>
                 </div>
                 <div class="selector-group">
-                    <label for="meses">Plazo</label>
-                    <select id="meses" onchange="selectMeses(this.value)">
-                        <option value="0">Cargando...</option>
-                    </select>
-                </div>
-                <div class="selector-group">
-                    <label for="capital">Capital</label>
-                    <select id="capital" onchange="selectCapital(this.value)">
-                        <option value="0">Cargando...</option>
-                    </select>
+                    <label>Capital</label>
+                    <div class="capital-options">
+                        <button class="capital-btn" data-modo="select">De la lista</button>
+                        <button class="capital-btn active" data-modo="input">Personalizado</button>
+                    </div>
+                    <div id="capitalSelectWrapper" style="display: none;">
+                        <select id="capitalSelect">
+                            <option value="0">Cargando...</option>
+                        </select>
+                    </div>
+                    <div id="capitalInputWrapper" class="capital-input-wrapper">
+                        <span class="capital-currency">$</span>
+                        <input type="number" id="capitalInput" placeholder="Ingresa el monto" min="1000" max="50000" step="100" value="5000">
+                        <div class="capital-error" id="capitalError">El capital debe estar entre $1,000 y $50,000</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- DIV DEL QR -->
+            <!-- NUEVA SECCIÓN: Datos del Cliente -->
+            <div class="cliente-section">
+                <h3>📋 Tus Datos</h3>
+                <div class="cliente-input-group">
+                    <label for="nombreCliente">Nombre Completo *</label>
+                    <input type="text" id="nombreCliente" placeholder="Ej: Juan Pérez García" required>
+                    <div class="input-error-msg" id="nombreError">Por favor ingresa tu nombre</div>
+                </div>
+                <div class="cliente-input-group">
+                    <label for="telefonoCliente">Teléfono (10 dígitos) *</label>
+                    <input type="tel" id="telefonoCliente" placeholder="Ej: 4421234567" maxlength="10" required>
+                    <div class="input-error-msg" id="telefonoError">Ingresa un teléfono válido de 10 dígitos</div>
+                </div>
+            </div>
+
+            <!-- Botón de WhatsApp -->
+            <button class="whatsapp-btn" id="whatsappBtn" onclick="enviarWhatsApp()">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Enviar por WhatsApp
+            </button>
+
+            <!-- QR CENTRADO AQUÍ -->
             <div class="qr-section">
                 <h3>Comparte este simulador</h3>
-                <div id="qrcode"></div>
-                <p class="qr-text">Escanea para abrir en otro dispositivo</p>
-                <button class="share-link-btn" onclick="shareViaWhatsApp()">Compartir por WhatsApp</button>
+                <div style="display: flex; justify-content: center; margin: 15px 0;">
+                    <div id="qrcode"></div>
+                </div>
+                <p class="qr-text">Escanea para abrir en otro celular</p>
+                <button class="share-btn" onclick="shareViaWhatsApp()">Compartir por WhatsApp</button>
             </div>
         </div>
     </div>
 
-    <a href="#" class="whatsapp-btn" id="whatsappBtn" target="_blank">
-        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
-    </a>
+    <!-- Toast de notificación -->
+    <div class="toast" id="toast"></div>
 
     <script>
         const SHEET_ID = '19Viesr9Lhy347A9L03J_RuxftUhBduaYsBY206IO6X8';
 
-        let selectedInteres = 0;
-        let selectedMeses = 0;
+        // ========================================
+        // 📌 CONFIGURACIÓN DE INTERESES POR DÍAS
+        // ========================================
+        const INTERES_POR_DIAS = {
+            27: 21.5,   
+            40: 32,     
+            54: 44,     
+            68: 49.8    
+        };
+
+        // ========================================
+        // 📌 LÍMITES DE CAPITAL
+        // ========================================
+        const CAPITAL_MIN = 1000;
+        const CAPITAL_MAX = 50000;
+
+        // Variables globales
+        let selectedDias = 0;
         let selectedCapital = 0;
+        let capitalMode = 'input';
+        let previousDias = 0;
+
+        // Variables de cálculo actual
+        let currentCalculation = {
+            nombre: '',
+            telefono: '',
+            capital: 0,
+            dias: 0,
+            interesPorc: 0,
+            interesTotal: 0,
+            totalPrestar: 0,
+            pagoDiario: 0,
+            fecha: ''
+        };
 
         function formatMoney(num) {
             return '$' + num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
+        function highlightElement(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.remove('highlight-change');
+            void element.offsetWidth;
+            element.classList.add('highlight-change');
+            
+            setTimeout(() => {
+                element.classList.remove('highlight-change');
+            }, 800);
+        }
+
+        function highlightSelector(element) {
+            element.classList.remove('selector-active');
+            void element.offsetWidth;
+            element.classList.add('selector-active');
+            
+            setTimeout(() => {
+                element.classList.remove('selector-active');
+            }, 600);
+        }
+
+        function validarCapital(valor) {
+            const num = parseFloat(valor);
+            if (isNaN(num)) return false;
+            return num >= CAPITAL_MIN && num <= CAPITAL_MAX;
+        }
+
+        function validarNombre(nombre) {
+            return nombre.trim().length >= 3;
+        }
+
+        function validarTelefono(telefono) {
+            const tel = telefono.replace(/\D/g, '');
+            return tel.length === 10;
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function setupCapitalModes() {
+            const buttons = document.querySelectorAll('.capital-btn');
+            const selectWrapper = document.getElementById('capitalSelectWrapper');
+            const inputWrapper = document.getElementById('capitalInputWrapper');
+            
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    capitalMode = this.dataset.modo;
+                    
+                    if (capitalMode === 'select') {
+                        selectWrapper.style.display = 'block';
+                        inputWrapper.style.display = 'none';
+                        selectedCapital = parseFloat(document.getElementById('capitalSelect').value);
+                    } else {
+                        selectWrapper.style.display = 'none';
+                        inputWrapper.style.display = 'block';
+                        selectedCapital = parseFloat(document.getElementById('capitalInput').value);
+                    }
+                    
+                    highlightSelector(this);
+                    calcular();
+                });
+            });
+        }
+
         async function loadData() {
             try {
-                // Cargar Interés
-                await loadColumnFromSheet('Interes', valores => {
-                    fillSelect('interes', valores, v => v + '%', valores[0]);
-                    selectedInteres = valores[0];
+                await loadColumnFromSheet('Dias', valores => {
+                    fillSelect('dias', valores, v => v + ' días', valores[0]);
+                    selectedDias = valores[0];
+                    previousDias = valores[0];
                 });
 
-                // Cargar Meses
-                await loadColumnFromSheet('Meses', valores => {
-                    fillSelect('meses', valores, v => v + ' meses', valores[0]);
-                    selectedMeses = valores[0];
-                });
-
-                // Cargar Capital
                 await loadColumnFromSheet('Capital', valores => {
-                    fillSelect('capital', valores, v => formatMoney(v), valores[0]);
-                    selectedCapital = valores[0];
+                    fillSelect('capitalSelect', valores, v => formatMoney(v), valores[0]);
                 });
 
-                updateDisplay();
-                calcular();
+                setupCapitalModes();
 
-                // Generar QR
+                document.getElementById('dias').addEventListener('change', function() {
+                    selectedDias = parseFloat(this.value);
+                    
+                    if (previousDias !== selectedDias) {
+                        highlightSelector(this);
+                        highlightElement('totalDias');
+                        highlightElement('interesAplicado');
+                        setTimeout(() => highlightElement('totalInteres'), 150);
+                        setTimeout(() => highlightElement('pagoDiario'), 300);
+                        previousDias = selectedDias;
+                    }
+                    
+                    calcular();
+                });
+
+                document.getElementById('capitalSelect').addEventListener('change', function() {
+                    selectedCapital = parseFloat(this.value);
+                    highlightSelector(this);
+                    calcular();
+                });
+
+                const capitalInput = document.getElementById('capitalInput');
+                const capitalError = document.getElementById('capitalError');
+                
+                capitalInput.addEventListener('input', function() {
+                    const valor = parseFloat(this.value);
+                    
+                    if (validarCapital(valor)) {
+                        selectedCapital = valor;
+                        capitalError.classList.remove('show');
+                        this.style.borderColor = '#667eea';
+                        highlightSelector(this);
+                        calcular();
+                    } else {
+                        capitalError.classList.add('show');
+                        this.style.borderColor = '#FF6B6B';
+                    }
+                });
+
+                // Validación de nombre
+                document.getElementById('nombreCliente').addEventListener('input', function() {
+                    const errorMsg = document.getElementById('nombreError');
+                    if (validarNombre(this.value)) {
+                        this.classList.remove('error');
+                        errorMsg.classList.remove('show');
+                    } else {
+                        this.classList.add('error');
+                        errorMsg.classList.add('show');
+                    }
+                });
+
+                // Validación de teléfono
+                document.getElementById('telefonoCliente').addEventListener('input', function() {
+                    // Solo permitir números
+                    this.value = this.value.replace(/\D/g, '');
+                    
+                    const errorMsg = document.getElementById('telefonoError');
+                    if (validarTelefono(this.value)) {
+                        this.classList.remove('error');
+                        errorMsg.classList.remove('show');
+                    } else {
+                        this.classList.add('error');
+                        errorMsg.classList.add('show');
+                    }
+                });
+
+                selectedCapital = parseFloat(capitalInput.value);
+                calcular();
                 generateQR();
 
                 document.getElementById('loadingMessage').style.display = 'none';
                 document.getElementById('appContent').style.display = 'block';
+
             } catch (err) {
+                console.error('Error al cargar:', err);
                 document.getElementById('loadingMessage').innerHTML = '❌ Error al cargar<br><button onclick="location.reload()">Reintentar</button>';
             }
         }
@@ -274,7 +682,7 @@
             const rows = json.table.rows || [];
             const valores = [];
 
-            for (let i = 0; i < rows.length; i++) {  // Empieza desde 0 para no saltar filas
+            for (let i = 0; i < rows.length; i++) {
                 const valor = rows[i]?.c?.[0]?.v;
                 if (valor != null) {
                     const num = parseFloat(valor);
@@ -298,47 +706,153 @@
             });
         }
 
-        function selectInteres(val) { selectedInteres = parseFloat(val); calcular(); }
-        function selectMeses(val) { selectedMeses = parseFloat(val); calcular(); }
-        function selectCapital(val) { selectedCapital = parseFloat(val); calcular(); }
-
-        function updateDisplay() {
-            // Puedes agregar más si quieres
-        }
-
         function calcular() {
-            const capital = selectedCapital;
-            const tasa = selectedInteres / 100;
-            const meses = selectedMeses;
-            const interesTotal = capital * tasa;
+            const capital = Number(selectedCapital);
+            const dias = Number(selectedDias);
+
+            if (!validarCapital(capital)) {
+                return;
+            }
+
+            if (isNaN(capital) || isNaN(dias) || capital <= 0 || dias <= 0) {
+                document.getElementById('totalPrestar').textContent = '$0.00';
+                document.getElementById('pagoDiario').textContent = '$0.00';
+                document.getElementById('totalDias').textContent = '0';
+                document.getElementById('interesAplicado').textContent = '0%';
+                document.getElementById('totalInteres').textContent = '$0.00';
+                return;
+            }
+
+            const interesPorc = INTERES_POR_DIAS[dias];
+            
+            if (interesPorc === undefined) {
+                console.error('No hay interés definido para', dias, 'días');
+                alert('Error: No hay tasa de interés configurada para ' + dias + ' días');
+                return;
+            }
+
+            const tasaDecimal = interesPorc / 100;
+            const interesTotal = capital * tasaDecimal;
             const totalPrestar = capital + interesTotal;
-            const totalDias = meses * 30;
-            const pagoDiario = totalPrestar / totalDias;
+            const pagoDiario = totalPrestar / dias;
+
+            // Guardar cálculo actual
+            currentCalculation = {
+                capital: capital,
+                dias: dias,
+                interesPorc: interesPorc,
+                interesTotal: interesTotal,
+                totalPrestar: totalPrestar,
+                pagoDiario: pagoDiario,
+                fecha: new Date().toLocaleString('es-MX')
+            };
 
             document.getElementById('totalPrestar').textContent = formatMoney(totalPrestar);
             document.getElementById('pagoDiario').textContent = formatMoney(pagoDiario);
-            document.getElementById('totalDias').textContent = totalDias;
+            document.getElementById('totalDias').textContent = dias;
+            document.getElementById('interesAplicado').textContent = interesPorc + '%';
             document.getElementById('totalInteres').textContent = formatMoney(interesTotal);
-
-            // Actualizar WhatsApp flotante
-            const mensaje = `🔹 *Simulación de Préstamo*
-💰 *Capital:* ${formatMoney(capital)}
-📊 *Interés (${selectedInteres}%):* ${formatMoney(interesTotal)}
-💵 *Total a pagar:* ${formatMoney(totalPrestar)}
-📅 *Plazo:* ${meses} meses (${totalDias} días)
-💳 *Pago diario:* ${formatMoney(pagoDiario)}
-¡Me interesa!`;
-            const url = `https://wa.me/524424003376?text=${encodeURIComponent(mensaje)}`;
-            document.getElementById('whatsappBtn').href = url;
         }
 
-        // Generar QR de la página actual
+        // ========================================
+        // 🆕 FUNCIÓN PARA ENVIAR A GOOGLE SHEETS
+        // ========================================
+        async function guardarEnGoogleSheets(datos) {
+            try {
+                // URL del Google Apps Script Web App
+                // IMPORTANTE: Debes crear este script (lo explico abajo)
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqExbWGWjAKlpr5MU-ijh2lW1DqCCvLhDiBHhY6RrZnhbFTW_t5rTT0hPiAgT9wzdFbw/exec';
+                
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                console.log('✅ Datos enviados a Google Sheets:', datos);
+                return true;
+            } catch (error) {
+                console.error('❌ Error al guardar en Google Sheets:', error);
+                return false;
+            }
+        }
+
+        // ========================================
+        // 🆕 FUNCIÓN PARA ENVIAR POR WHATSAPP
+        // ========================================
+        async function enviarWhatsApp() {
+            const nombre = document.getElementById('nombreCliente').value.trim();
+            const telefono = document.getElementById('telefonoCliente').value.trim();
+
+            // Validar nombre
+            if (!validarNombre(nombre)) {
+                showToast('❌ Por favor ingresa tu nombre completo', true);
+                document.getElementById('nombreCliente').focus();
+                return;
+            }
+
+            // Validar teléfono
+            if (!validarTelefono(telefono)) {
+                showToast('❌ Ingresa un teléfono válido de 10 dígitos', true);
+                document.getElementById('telefonoCliente').focus();
+                return;
+            }
+
+            // Validar que haya cálculo
+            if (currentCalculation.totalPrestar === 0) {
+                showToast('❌ Primero configura tu préstamo', true);
+                return;
+            }
+
+            // Preparar datos para enviar
+            const datosParaGuardar = {
+                fecha: currentCalculation.fecha,
+                nombre: nombre,
+                telefono: telefono,
+                capital: currentCalculation.capital,
+                dias: currentCalculation.dias,
+                interesPorc: currentCalculation.interesPorc,
+                interesTotal: currentCalculation.interesTotal,
+                totalPrestar: currentCalculation.totalPrestar,
+                pagoDiario: currentCalculation.pagoDiario
+            };
+
+            // Guardar en Google Sheets (en segundo plano)
+            guardarEnGoogleSheets(datosParaGuardar);
+
+            // Crear mensaje de WhatsApp
+            const mensaje = `🔹 *Simulación de Préstamo*
+
+👤 *Nombre:* ${nombre}
+📱 *Teléfono:* ${telefono}
+
+💰 *Capital Solicitado:* ${formatMoney(currentCalculation.capital)}
+📊 *Interés (${currentCalculation.interesPorc}%):* ${formatMoney(currentCalculation.interesTotal)}
+💵 *Total a Prestar:* ${formatMoney(currentCalculation.totalPrestar)}
+📅 *Plazo:* ${currentCalculation.dias} días
+💳 *Pago Diario:* ${formatMoney(currentCalculation.pagoDiario)}
+
+¡Me interesa este préstamo!`;
+
+            const url = `https://wa.me/524424003376?text=${encodeURIComponent(mensaje)}`;
+            
+            showToast('✅ Abriendo WhatsApp...', false);
+            
+            // Abrir WhatsApp
+            setTimeout(() => {
+                window.open(url, '_blank');
+            }, 500);
+        }
+
         function generateQR() {
             const url = window.location.href;
             new QRCode(document.getElementById("qrcode"), {
                 text: url,
-                width: 200,
-                height: 200,
+                width: 220,
+                height: 220,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
@@ -347,7 +861,7 @@
 
         function shareViaWhatsApp() {
             const url = window.location.href;
-            const mensaje = `¡Prueba este simulador de préstamos! Escanea o abre: ${url}`;
+            const mensaje = `¡Prueba este simulador de préstamos! Abre o escanea: ${url}`;
             const waUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
             window.open(waUrl, '_blank');
         }
