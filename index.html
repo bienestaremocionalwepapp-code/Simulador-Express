@@ -102,7 +102,7 @@
         .whatsapp-icon { width: 35px; height: 35px; fill: white; }
         .loading { text-align: center; padding: 40px; color: #667eea; font-size: 1.1em; }
 
-        /* Estilos para el QR */
+        /* QR Section */
         .qr-section {
             margin-top: 40px;
             padding: 25px;
@@ -118,6 +118,10 @@
         }
         #qrcode {
             margin: 20px auto;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .qr-text {
             font-size: 1.1em;
@@ -198,11 +202,11 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DEL QR AQUÍ -->
+            <!-- DIV DEL QR -->
             <div class="qr-section">
                 <h3>Comparte este simulador</h3>
                 <div id="qrcode"></div>
-                <p class="qr-text">Escanea para abrir en otro celular</p>
+                <p class="qr-text">Escanea para abrir en otro dispositivo</p>
                 <button class="share-link-btn" onclick="shareViaWhatsApp()">Compartir por WhatsApp</button>
             </div>
         </div>
@@ -248,7 +252,7 @@
                 updateDisplay();
                 calcular();
 
-                // Generar QR después de cargar
+                // Generar QR
                 generateQR();
 
                 document.getElementById('loadingMessage').style.display = 'none';
@@ -270,7 +274,7 @@
             const rows = json.table.rows || [];
             const valores = [];
 
-            for (let i = 1; i < rows.length; i++) {
+            for (let i = 0; i < rows.length; i++) {  // Empieza desde 0 para no saltar filas
                 const valor = rows[i]?.c?.[0]?.v;
                 if (valor != null) {
                     const num = parseFloat(valor);
@@ -299,7 +303,7 @@
         function selectCapital(val) { selectedCapital = parseFloat(val); calcular(); }
 
         function updateDisplay() {
-            // Puedes agregar más info si quieres
+            // Puedes agregar más si quieres
         }
 
         function calcular() {
